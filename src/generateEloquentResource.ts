@@ -15,25 +15,25 @@ export const generateEloquentResource = (sheetData: string[][]) => {
   const visibleColumns = getVisibleColumns(sheetData);
   const eloquentResourceCode = `<?php
 
-        namespace Lvgs\Laravel\Lvm\Models\Resources\Eloquent;
+namespace Lvgs\Laravel\Lvm\Models\Resources\Eloquent;
 
-        class ${className} extends BaseEloquent
-      {
-          protected $table = '${tableName}';
+class ${className} extends BaseEloquent
+{
+  protected $table = '${tableName}';
 
-          protected $primaryKey = '${primaryKey}';
+  protected $primaryKey = '${primaryKey}';
 
-          protected $with = [
-              'member',
-              'labors',
-          ];
+  protected $with = [
+      'member',
+      'labors',
+  ];
 
-          protected $fillable = [
-          ];
+  protected $fillable = [
+  ];
 
-          protected $visible_column = [${visibleColumns}];
-
-          `;
+  protected $visible_column = [${visibleColumns}];
+}
+`;
   return eloquentResourceCode;
 
   // 各シートごとに、generateEloquentTemplateメソッドを実行
