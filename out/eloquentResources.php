@@ -16,5 +16,14 @@ class MarketingKoCareerlibPerson extends BaseEloquent
   protected $fillable = [
   ];
 
-  protected $visible_column = [id,experience_year,nick_name,age_id,sex_id,created_at,updated_at,deleted_at];
+  protected $visible_column = [
+    'id',
+    'experience_year',
+    'nick_name',
+    'age_id',
+    'sex_id',
+    'created_at',
+    'updated_at',
+    'deleted_at'
+  ];
 }

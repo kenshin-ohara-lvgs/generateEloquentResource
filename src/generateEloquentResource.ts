@@ -31,7 +31,9 @@ class ${className} extends BaseEloquent
   protected $fillable = [
   ];
 
-  protected $visible_column = [${visibleColumns}];
+  protected $visible_column = [
+    ${visibleColumns.map((col) => `'${col}'`).join(",\n    ")}
+  ];
 }
 `;
   return eloquentResourceCode;
