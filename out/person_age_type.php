@@ -2,9 +2,9 @@
 
 namespace LvgsLaravelLvmModelsResourcesEloquent;
 
-class MarketingKoCareerlibPerson extends BaseEloquent
+class MarketingKoCareerlibPersonAgeType extends BaseEloquent
 {
-  protected $table = 'marketing_ko_careerlib_person';
+  protected $table = 'marketing_ko_careerlib_person_age_type';
 
   protected $primaryKey = 'undefined';
 
@@ -18,12 +18,13 @@ class MarketingKoCareerlibPerson extends BaseEloquent
 
   protected $visible_column = [
     'id',
-    'experience_year',
-    'nick_name',
-    'age_id',
-    'sex_id',
+    'name',
     'created_at',
     'updated_at',
     'deleted_at'
   ];
+    public function marketing_ko_careerlib_persons()
+    {
+        return $this->hasMany(MarketingKoCareerlibPerson::class, 'age_type_id', 'id');
+    }
 }

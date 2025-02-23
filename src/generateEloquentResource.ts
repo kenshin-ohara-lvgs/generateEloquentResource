@@ -37,19 +37,4 @@ class ${className} extends BaseEloquent
 }
 `;
   return eloquentResourceCode;
-
-  // 各シートごとに、generateEloquentTemplateメソッドを実行
-  // TODO: 切り出し
-  // TODO: TBL定義以外のシートや、フォーマットに則さないTBL定義シートが指定された時用のエラーハンドリング
-  // for (const sheet of sheets) {
-  //   const tableName = getTableNameFromSheet(sheet);
-  //   try {
-  //     outputs[tableName] = generateEloquentTemplate(sheet);
-  //   } catch (e) {
-  //     console.log(
-  //       tableName,
-  //       "での読込に失敗しました。次のシートの処理に移ります"
-  //     );
-  //   }
-  // }
 };
