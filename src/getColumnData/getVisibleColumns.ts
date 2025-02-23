@@ -9,7 +9,10 @@ export const getVisibleColumns = (sheetData: string[][]): string[] => {
   let rowIndex = startRowIndex;
 
   while (rowIndex < sheetData.length) {
-    if (sheetData[rowIndex][publicVisibleColumnIndex] === "TRUE") {
+    if (
+      sheetData[rowIndex][publicVisibleColumnIndex] === "TRUE" ||
+      sheetData[rowIndex][publicVisibleColumnIndex] === "true"
+    ) {
       publicVisibleColumns.push(sheetData[rowIndex][columnNameIndex]);
     }
     rowIndex++;

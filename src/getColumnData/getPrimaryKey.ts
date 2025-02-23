@@ -8,7 +8,10 @@ export const getPrimaryKey = (sheetData: string[][]) => {
   let rowIndex = startRowIndex;
 
   while (rowIndex < sheetData.length) {
-    if (sheetData[rowIndex][pkColumnIndex] === "true") {
+    if (
+      sheetData[rowIndex][pkColumnIndex] === "TRUE" ||
+      sheetData[rowIndex][pkColumnIndex] === "true"
+    ) {
       return sheetData[rowIndex][columnNameIndex];
     }
     rowIndex++;

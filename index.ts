@@ -22,8 +22,6 @@ function processCSVFiles() {
     const tableName = csvdata[0][2]; // テーブル名を取得
     const relations = generateRelations(csvdata);
 
-    console.log("リレーション：", relations);
-
     // リレーション情報を整理
     relations.forEach(([targetTable, foreignKey, primaryKey]) => {
       // belongsTo側の設定
@@ -44,7 +42,7 @@ function processCSVFiles() {
         allRelations.set(targetTable, { belongsTo: [], hasMany: [] });
       }
       allRelations.get(targetTable)?.hasMany.push(
-        `public function ${tableName}s()
+        `public function ${tableName}()
     {
         return $this->hasMany(${snakeToUpperCamel(
           tableName
@@ -61,7 +59,7 @@ function processCSVFiles() {
     const tableName = csvdata[0][2];
 
     // 基本的なEloquentリソースコードを生成
-    let output = generateEloquentResource(csvdata);
+    let output = generateEloquentResource(csvdata, allRelations.get(tableName));
     // リレーションメソッドを追加
     const relations = allRelations.get(tableName);
     if (relations) {
@@ -83,8 +81,8 @@ function processCSVFiles() {
       output = lines.join("\n");
     }
 
-    // ファイルに出力
-    const outputFileName = file.replace(".csv", ".php");
+    // ファイルに出力する部分を修正
+    const outputFileName = `${snakeToUpperCamel(tableName)}.php`;
     const outputPath = path.join("out", outputFileName);
     convertTextToPhpFile(outputPath, output);
     console.log(`Processed: ${file} -> ${outputFileName}`);
