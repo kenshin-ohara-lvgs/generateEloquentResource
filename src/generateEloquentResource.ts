@@ -38,7 +38,7 @@ export const generateEloquentResource = (
 
   const eloquentResourceCode = `<?php
 
-namespace Lvgs\Laravel\Lvm\Models\Resources\Eloquent;
+namespace Lvgs\\Laravel\\Lvm\\Models\\Resources\\Eloquent;
 
 class ${className} extends BaseEloquent
 {
