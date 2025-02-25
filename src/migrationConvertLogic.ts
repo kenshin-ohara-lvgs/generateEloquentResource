@@ -72,8 +72,15 @@ function generateColumns(columns: ColumnDefinition[]): string {
           column.default.toLowerCase() === "now()"
         ) {
           def += `->default(\\DB::raw('now()'))`;
+        } else if (column.type === "integer" || column.type === "int") {
+          // 整数型の場合、数値として扱う
+          def += `->default(${parseInt(column.default)})`;
+        } else if (column.type === "boolean") {
+          // 真偽値の場合、booleanとして扱う
+          def += `->default(${column.default.toLowerCase() === "true"})`;
         } else {
-          def += `->default(${column.default})`;
+          // その他の場合は文字列として扱う
+          def += `->default('${column.default}')`;
         }
       }
 
